@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vacation Packages | Save More on Flights + Hotels</title>
+  <meta name="description" content="Compare vacation packages, bundle flights and hotels, and discover flexible getaway options with Expedia Vacation Packages." />
+  <style>
+    :root {
+      --bg: #f7fbff;
+      --text: #16324f;
+      --muted: #5c728a;
+      --primary: #0a66c2;
+      --primary-dark: #084d93;
+      --accent: #ffb703;
+      --card: #ffffff;
+      --border: #d9e7f5;
+      --shadow: 0 14px 40px rgba(10, 41, 74, 0.12);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef7ff 0%, #ffffff 46%, #f7fbff 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #0f2740;
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .topbar strong { color: #ffd166; }
+
+    header.hero {
+      padding: 28px 0 54px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #4ea8ff);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid #cfe4fb;
+      background: rgba(255,255,255,0.8);
+      border-radius: 999px;
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.02;
+      margin: 0 0 16px;
+      letter-spacing: -1.4px;
+    }
+
+    .hero-copy p {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 24px;
+      max-width: 60ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #2c86df);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(10, 102, 194, 0.28);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .micro-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      position: relative;
+      backdrop-filter: blur(8px);
+    }
+
+    .deal-badge {
+      display: inline-block;
+      background: #ecf6ff;
+      border: 1px solid #d7ebff;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .search-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid #e0edf9;
+      border-radius: 22px;
+      padding: 20px;
+    }
+
+    .search-box h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .field {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .field span {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    .trusted {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.8px;
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit-card,
+    .destination-card,
+    .testimonial,
+    .faq-item,
+    .cta-panel,
+    .banner-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .benefit-card {
+      padding: 22px;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #eef6ff;
+      color: var(--primary);
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .benefit-card h3,
+    .destination-card h3,
+    .cta-panel h3,
+    .faq-item h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .benefit-card p,
+    .destination-card p,
+    .testimonial p,
+    .faq-item p,
+    .cta-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .destination-card {
+      overflow: hidden;
+    }
+
+    .destination-image {
+      height: 190px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .destination-body {
+      padding: 20px;
+    }
+
+    .destination-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--primary-dark);
+      background: #edf6ff;
+      padding: 7px 11px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .banner-wrap {
+      padding: 26px;
+      text-align: center;
+    }
+
+    .banner-wrap p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .testimonial {
+      padding: 22px;
+    }
+
+    .stars {
+      color: #ffb703;
+      font-size: 18px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 14px;
+      font-size: 15px;
+    }
+
+    .cta-panel {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff 0%, #eef7ff 100%);
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 20px;
+    }
+
+    footer {
+      padding: 24px 0 50px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .disclaimer {
+      max-width: 880px;
+      margin: 18px auto 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .benefits,
+      .destinations,
+      .testimonial-grid,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .search-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-panel {
+        text-align: center;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Limited-time getaway inspiration starts here. <strong>Bundle your hotel + flight and explore more for less.</strong></div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-badge">E</div>
+          <span>Vacation Travel Packages</span>
+        </div>
+        <a class="nav-cta" href="https://expedia.com/affiliates/travel_deal_spot/vacationpackages" target="_blank" rel="nofollow sponsored noopener">View Vacation Packages</a>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">✈️ Hotels + Flights + Getaway Deals</div>
+          <h1>Book Smarter With Vacation Packages Built For Better Value</h1>
+          <p>Discover beach escapes, city breaks, family vacations, and last-minute getaways in one place. Compare package options, bundle essentials, and find your next trip with fewer clicks.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://expedia.com/affiliates/travel_deal_spot/vacationpackages" target="_blank" rel="nofollow sponsored noopener">Search Packages Now</a>
+            <a class="btn btn-secondary" href="#destinations">Explore Popular Trips</a>
+          </div>
+
+          <div class="micro-proof">
+            <span>✓ Easy package browsing</span>
+            <span>✓ Great for beach, family, and city trips</span>
+            <span>✓ Fast path to booking</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="deal-badge">Popular choice for flexible getaways</div>
+          <div class="search-box">
+            <h3>Start Your Vacation Search</h3>
+            <p style="color:#5c728a; margin:0;">Bundle your stay and flight for a faster, more convenient trip-planning experience.</p>
+            <div class="search-grid">
+              <div class="field"><label>Destination</label><span>Beach, City, Family, or Romance</span></div>
+              <div class="field"><label>Trip Type</label><span>Flight + Hotel Package</span></div>
+              <div class="field"><label>Travel Dates</label><span>Choose what works for you</span></div>
+              <div class="field"><label>Guests</label><span>Solo, Couple, Family, Group</span></div>
+              <div class="field full"><label>Best Next Step</label><span>Compare package options and book the one that fits your budget</span></div>
+            </div>
+            <a class="btn btn-primary" style="width:100%;" href="https://expedia.com/affiliates/travel_deal_spot/vacationpackages" target="_blank" rel="nofollow sponsored noopener">Find My Vacation Package</a>
+            <div class="trusted">Simple, direct path to browsing available vacation package options.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        
+      </div>
+
+      <div class="benefits">
+        <div class="benefit-card">
+                  </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="destinations">
+    <div class="container">
+      <div class="section-head">
+        <h2>Popular Vacation Package Ideas</h2>
+              </div>
+
+      <div class="destinations">
+        <div class="destination-card">
+          <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="destination-body">
+            <h3>Beach Escapes</h3>
+            <p>Perfect for travelers looking for ocean views, resort vibes, and a relaxing break from the daily routine.</p>
+            <div class="destination-tag">Sun + Sand + Resort Stays</div>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="destination-body">
+            <h3>City Adventures</h3>
+            <p>Great for weekend breaks, entertainment trips, and travelers who want dining, nightlife, and attractions in one place.</p>
+            <div class="destination-tag">Food + Fun + Fast Getaways</div>
+          </div>
+        </div>
+
+        <div class="destination-card">
+          <div class="destination-image" style="background-image:url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80');"></div>
+          <div class="destination-body">
+            <h3>Family Trips</h3>
+            <p>Package-friendly options for families who want an easier planning experience for school breaks, holidays, or summer travel.</p>
+            <div class="destination-tag">Easy Planning For Groups</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="banner-wrap">
+        <p>Ready to browse package options?</p>
+        <div class="eg-affiliate-banners" data-program="us-expedia" data-network="pz" data-layout="medium-rectangle" data-image="beach" data-message="find-perfect-getaway-package" data-camref="1110lBWcq" data-pubref="" data-link="packages"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+              </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>“I wanted a quicker way to compare a full trip instead of juggling multiple tabs. This made it much easier to start planning.”</p>
+          <strong>— Weekend Traveler</strong>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>“The package angle is what got my attention. I like seeing options that feel organized instead of building the trip from scratch.”</p>
+          <strong>— Family Vacation Planner</strong>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>“The page was simple, visual, and clear. I clicked through right away because it felt focused on exactly what I was looking for.”</p>
+          <strong>— Last-Minute Getaway Shopper</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-panel">
+        <div>
+          <h3>Plan Less. Travel More.</h3>
+                  </div>
+        <a class="btn btn-primary" href="https://expedia.com/affiliates/travel_deal_spot/vacationpackages" target="_blank" rel="nofollow sponsored noopener">Book Through Expedia Packages</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+        <p>Simple answers reduce hesitation and keep visitors moving toward the booking flow.</p>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>What is a vacation package?</h3>
+          <p>A vacation package typically combines trip elements such as a hotel stay and flight into one booking path, making trip planning easier for many travelers.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Who is this page best for?</h3>
+          <p>This page is ideal for couples, families, solo travelers, and weekend trip planners who want a simpler way to start browsing getaway options.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I get started?</h3>
+          <p>Click any main button on the page to go directly to the Expedia Vacation Packages booking page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><strong>Vacation Travel Packages</strong> — Find inspiration for your next getaway.</p>
+      <p class="disclaimer">Disclosure: This page contains affiliate links. If a visitor books through one of these links, the site owner may earn a commission at no additional cost to the visitor. This site is an independent promotional page and should clearly display appropriate branding, disclosure, and any required terms to remain aligned with partner program policies. Because your domain uses the Expedia name, review Expedia affiliate trademark and brand-use rules before publishing.</p>
+    </div>
+  </footer>
+
+  <script class="eg-affiliate-banners-script" src="https://creator.expediagroup.com/products/banners/assets/eg-affiliate-banners.js"></script>
+</body>
+</html>
